@@ -83,6 +83,11 @@ The expected workflow is:
 This creates a "fresh eyes" review — CodeRabbit analyzes your code with zero context bias,
 catching issues that the author is blind to.
 
+#### CI Safety Net
+
+A GitHub Actions workflow mirrors all local quality gates. Even if local checks are skipped,
+the CI pipeline will catch failures on the PR. Never force-merge a PR with failing CI.
+
 ### 4. Verification Before Completion
 
 Before marking ANY task as complete:
