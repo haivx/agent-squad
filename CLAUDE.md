@@ -64,7 +64,26 @@ All teammates follow RED-GREEN-REFACTOR:
 - One assertion per test when possible
 - Test behavior, not implementation details
 
-### 3. Verification Before Completion
+### 3. Review Protocol
+
+Every teammate MUST run a CodeRabbit review before marking a task complete:
+
+1. Stage your changes: `git add -A`
+2. Run review: `/coderabbit:review uncommitted` (or `coderabbit review --prompt-only` in terminal)
+3. Read every finding. Fix all Critical and High severity issues.
+4. For Medium/Low findings: fix or add a code comment explaining why it's intentional.
+5. Re-run review until no Critical/High findings remain.
+6. Only then mark the task as complete.
+
+#### Review Loop
+
+The expected workflow is:
+- Write code (TDD) → CodeRabbit review → Fix issues → Review again → Complete
+
+This creates a "fresh eyes" review — CodeRabbit analyzes your code with zero context bias,
+catching issues that the author is blind to.
+
+### 4. Verification Before Completion
 
 Before marking ANY task as complete:
 - Run the full test suite: `pnpm test`
