@@ -32,6 +32,19 @@ This template combines two approaches:
 
 The key insight: Agent Teams give you **parallelism**, but without **discipline** teammates waste tokens going in circles. This template bakes discipline into the CLAUDE.md so every teammate follows it automatically.
 
+## Code Review Model
+
+This template implements a 4-layer review process where each layer catches what the previous one missed:
+
+| Layer | What | How | Catches |
+|-------|------|-----|---------|
+| 1. Automate the obvious | Hooks run on task completion | `hooks/task-completed.sh` — tests, types, lint | Syntax errors, type bugs, test failures |
+| 2. AI reviewing AI | Fresh-context AI reviews teammate code | CodeRabbit CLI via `/coderabbit:review` | Logic errors, edge cases, security issues |
+| 3. Automated CI | Server-side checks on every PR | `.github/workflows/ci.yml` | Anything bypassed locally |
+| 4. Human review | Architecture & judgement | PR template + lead review | Business logic, design decisions, what's missing |
+
+The key insight: layers 1-3 are automated and fast. They free up human reviewers (layer 4) to focus on the things only humans can judge — architecture, business context, and "is this the right thing to build?"
+
 ## Quick Start
 
 ### Prerequisites
