@@ -1,0 +1,19 @@
+# .coderabbit.yaml — CodeRabbit configuration for agent-squad
+# Docs: https://docs.coderabbit.ai/getting-started/configure-coderabbit
+
+language: en
+reviews:
+  profile: assertive
+  auto_review:
+    enabled: true
+  path_instructions:
+    - path: "src/**"
+      instructions: |
+        Review against the conventions in CLAUDE.md:
+        - TDD discipline: tests must exist for new code
+        - Module boundaries: check file ownership is respected
+        - No shared file modifications without lead approval
+    - path: "hooks/**"
+      instructions: "These are Claude Code Agent Teams hooks. Verify exit codes are correct (0=allow, 2=block with feedback)."
+chat:
+  auto_reply: true
