@@ -22,6 +22,7 @@ Then create an agent team:
 - Teammate "ui": Implement Task 3 (UI components). Wait for types teammate to finish Task 1 first. Only touch files listed in Task 3.
 
 All teammates MUST follow TDD: write failing test → implement → verify pass → commit.
+All teammates MUST run `/coderabbit:review uncommitted` before marking their task complete.
 
 After all teammates finish, I'll handle Task 4 (integration) or spawn a new teammate.
 
@@ -115,3 +116,4 @@ Do NOT merge any prototype into the main codebase.
 3. **Define file boundaries** — most team failures come from overlapping file access
 4. **Start with 2-3 teammates** — more teammates = more coordination overhead
 5. **Include context in spawn prompts** — teammates don't inherit lead's conversation
+6. **Enable CodeRabbit review** — install the plugin (`claude plugin install coderabbit`) and add "Run /coderabbit:review before completing each task" to your spawn prompts

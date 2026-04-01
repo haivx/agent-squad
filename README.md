@@ -39,6 +39,7 @@ The key insight: Agent Teams give you **parallelism**, but without **discipline*
 - Claude Code (latest version)
 - Opus 4.6 model
 - tmux (for split-pane mode, optional but recommended)
+- CodeRabbit CLI (optional but recommended): `curl -fsSL https://cli.coderabbit.ai/install.sh | sh`
 
 ### Setup
 
@@ -61,14 +62,21 @@ cp -r agent-squad/.claude your-project/
 chmod +x hooks/teammate-idle.sh hooks/task-completed.sh
 ```
 
-4. **Start a tmux session (recommended for split panes):**
+4. **Install CodeRabbit plugin (recommended):**
+
+```bash
+claude plugin install coderabbit
+coderabbit auth login
+```
+
+5. **Start a tmux session (recommended for split panes):**
 
 ```bash
 cd your-project
 tmux new-session -s agent-team
 ```
 
-5. **Launch Claude Code:**
+6. **Launch Claude Code:**
 
 ```bash
 claude
