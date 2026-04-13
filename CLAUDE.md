@@ -107,6 +107,75 @@ Before marking ANY task as complete:
 
 ---
 
+## Behavioral Principles
+
+These principles address the most common LLM coding failure modes (derived from Andrej Karpathy's observations). Every teammate must follow them alongside the development discipline above.
+
+### Think Before Coding
+
+**Do not assume. Surface confusion. Present tradeoffs.**
+
+Before implementing any code:
+- State your assumptions explicitly. If uncertain, ask the lead — don't guess and proceed.
+- If multiple valid approaches exist, present them with tradeoffs. Don't silently pick one.
+- If you're confused about scope or requirements, stop and ask. Naming what's unclear is always correct.
+- If a simpler approach exists than what was asked, say so and push back.
+
+**In a team context:** Teammates don't inherit the lead's full context. When in doubt, message the lead before writing a single line of code. Silent assumptions are the #1 source of wasted tokens in agent teams.
+
+### Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was explicitly asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If 200 lines could be 50, rewrite it.
+
+**The test:** Would a senior engineer say this is overcomplicated? If yes, simplify before submitting.
+
+### Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style even if you'd do it differently.
+- If you notice unrelated dead code, mention it to the lead — don't delete it.
+
+When your changes create orphans:
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless explicitly asked.
+
+**The test:** Every changed line should trace directly to the assigned task. If it can't, revert it.
+
+**In a team context:** This is critical. Teammates must not touch files outside their assigned scope, even to "improve" them. Doing so creates conflicts with other teammates and defeats file ownership.
+
+### Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform imperative tasks into verifiable goals:
+
+| Instead of... | Transform to... |
+|---------------|----------------|
+| "Add validation" | "Write tests for invalid inputs, then make them pass" |
+| "Fix the bug" | "Write a test that reproduces it, then make it pass" |
+| "Refactor X" | "Ensure tests pass before and after" |
+
+For multi-step work, state a brief plan before starting:
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let a teammate loop independently. Weak criteria ("make it work") require constant clarification and waste tokens.
+
+---
+
 ## Agent Team Protocols
 
 ### For the Team Lead
@@ -131,6 +200,7 @@ Before marking ANY task as complete:
   - **DONE_WITH_CONCERNS**: Complete but found issues worth discussing
   - **BLOCKED**: Cannot proceed, need input (explain what you need)
   - **NEEDS_CONTEXT**: Missing information to complete the task
+  - **ASSUMPTION_MADE**: Used this interpretation: [state it]. Proceeding unless lead objects.
 - Follow TDD — no exceptions
 
 ### Task Structure Template
@@ -164,6 +234,9 @@ When reviewing teammate output (lead or reviewer teammate):
 - [ ] No dead code or commented-out code
 - [ ] Commit messages follow convention
 - [ ] No regressions in existing tests
+- [ ] No speculative complexity — every abstraction traces to a stated requirement
+- [ ] No drive-by changes — all edits are within the assigned file scope
+- [ ] Assumptions were surfaced before implementation (check commit history or task notes)
 
 ---
 
