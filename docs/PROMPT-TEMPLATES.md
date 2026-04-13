@@ -5,6 +5,34 @@ Customize the specifics for your project.
 
 ---
 
+## Solo Dev Quick Start
+
+Best for: building a feature end-to-end alone, no multi-teammate coordination needed.
+
+```
+I need to implement [FEATURE].
+
+Read the plan at docs/plans/[PLAN_FILE].md before starting.
+
+Your role: implement end-to-end — DB migration → service → API route → UI.
+Follow the fullstack-integration skill order (DB first, UI last).
+Follow TDD: write a failing test before each implementation unit.
+
+Files you own: [LIST]
+Files off-limits: [LIST]
+
+Acceptance criteria:
+- [ ] [criterion 1]
+- [ ] [criterion 2]
+- [ ] pnpm test passes
+- [ ] pnpm tsc --noEmit passes
+- [ ] pnpm lint passes
+
+Report back: DONE / DONE_WITH_CONCERNS / BLOCKED
+```
+
+---
+
 ## 1. Feature Implementation Team
 
 Best for: Building a new feature with clear frontend/backend separation.

@@ -8,7 +8,21 @@ A starter template for Claude Code Agent Teams, combining Anthropic's native mul
 .
 ├── CLAUDE.md                       # Core instructions (all teammates read this)
 ├── .claude/
-│   └── settings.json               # Agent teams flag + pre-approved permissions
+│   ├── settings.json               # Agent teams flag + pre-approved permissions
+│   └── skills/
+│       ├── backend-patterns/       # Repository pattern, service layer, middleware
+│       ├── api-design/             # REST conventions, status codes, pagination
+│       ├── database-migrations/    # Zero-downtime schema changes, Prisma discipline
+│       ├── database-optimizer/     # EXPLAIN ANALYZE, index strategy, N+1 fixes
+│       ├── security-review/        # Secrets, auth patterns, OWASP checklist
+│       ├── fullstack-integration/  # DB → service → API → UI type-safe wiring
+│       ├── design-taste-frontend/  # Premium UI engineering, anti-cliché rules
+│       ├── high-end-visual-design/ # Visual hierarchy, spacing, color systems
+│       ├── minimalist-ui/          # Editorial minimalism, warm monochrome
+│       ├── industrial-brutalist-ui/# Bold, structural, high-contrast interfaces
+│       ├── redesign-existing-projects/ # Audit + elevate existing UI
+│       ├── stitch-design-taste/    # Stitch-specific design patterns
+│       └── full-output-enforcement/# Bans truncation, enforces complete output
 ├── docs/
 │   ├── plans/
 │   │   └── TEMPLATE.md             # Plan template (fill before spawning teammates)
@@ -31,6 +45,39 @@ This template combines two approaches:
 | Systematic debugging | TeammateIdle / TaskCompleted hooks |
 
 The key insight: Agent Teams give you **parallelism**, but without **discipline** teammates waste tokens going in circles. This template bakes discipline into the CLAUDE.md so every teammate follows it automatically.
+
+## Skills
+
+Skills are domain expertise injected into agent context automatically when relevant.
+They live in `.claude/skills/` and activate based on task type — no manual invocation needed.
+
+### Backend
+| Skill | Activates when... |
+|---|---|
+| `backend-patterns` | Designing service layer, repository, middleware |
+| `api-design` | Creating or reviewing API endpoints |
+| `database-migrations` | Adding/changing DB schema with Prisma |
+| `database-optimizer` | Slow queries, index design, connection pooling |
+| `security-review` | Auth, secrets, input validation, OWASP |
+| `fullstack-integration` | Wiring a full feature from DB to UI |
+
+### Frontend
+| Skill | Activates when... |
+|---|---|
+| `design-taste-frontend` | Any UI component or page |
+| `high-end-visual-design` | Visual hierarchy, spacing, color decisions |
+| `minimalist-ui` | Editorial/minimal interface style |
+| `industrial-brutalist-ui` | Bold, structural UI |
+| `redesign-existing-projects` | Auditing or elevating existing UI |
+| `stitch-design-taste` | Stitch-specific patterns |
+
+### Meta
+| Skill | Activates when... |
+|---|---|
+| `full-output-enforcement` | Any task requiring complete, untruncated output |
+
+To add a skill: create a folder in `.claude/skills/` with a `SKILL.md` file.
+Frontmatter needs only `name` and `description`. The description is the auto-trigger signal.
 
 ## Code Review Model
 
